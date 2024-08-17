@@ -1,19 +1,18 @@
 import express from 'express';
-import dotenv from 'dotenv';
+import config from './config/default';
 import { connectDB } from './database';
 
-dotenv.config({ path: __dirname + '/config/.env' });
-connectDB({ URI: process.env.DB_STRING || 'mongodb://127.0.0.1:27017/myapp' });
+connectDB();
 
 const app = express();
 
-app.get('/', (req, res) => {
-  console.log(req);
-  res.send(JSON.stringify({ message: 'Hello World' }));
+app.use(express.json());
+
+app.get('*', (req, res) => {
+  // Need to serve the index.html file for react root.
+  res.send({ message: 'Hello world' });
 });
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(config.port, () => {
+  console.log(`Server is running on port ${config.port}`);
 });
