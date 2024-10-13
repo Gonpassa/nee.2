@@ -16,9 +16,15 @@ import { Route as rootRoute } from './routes/__root'
 
 // Create Virtual Routes
 
+const JournalLazyImport = createFileRoute('/journal')()
 const IndexLazyImport = createFileRoute('/')()
 
 // Create/Update Routes
+
+const JournalLazyRoute = JournalLazyImport.update({
+  path: '/journal',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/journal.lazy').then((d) => d.Route))
 
 const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
@@ -36,6 +42,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexLazyImport
       parentRoute: typeof rootRoute
     }
+    '/journal': {
+      id: '/journal'
+      path: '/journal'
+      fullPath: '/journal'
+      preLoaderRoute: typeof JournalLazyImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -43,32 +56,37 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
+  '/journal': typeof JournalLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
+  '/journal': typeof JournalLazyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
+  '/journal': typeof JournalLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/journal'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/journal'
+  id: '__root__' | '/' | '/journal'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
+  JournalLazyRoute: typeof JournalLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
+  JournalLazyRoute: JournalLazyRoute,
 }
 
 export const routeTree = rootRoute
@@ -83,11 +101,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/"
+        "/",
+        "/journal"
       ]
     },
     "/": {
       "filePath": "index.lazy.tsx"
+    },
+    "/journal": {
+      "filePath": "journal.lazy.tsx"
     }
   }
 }
