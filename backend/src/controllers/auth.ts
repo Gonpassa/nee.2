@@ -1,8 +1,6 @@
-import { Request, Response } from 'express';
-import { IUser } from '../models/User';
-interface AuthenticatedRequest extends Request {
-  user?: IUser;
-}
+import { Response } from 'express';
+import { AuthenticatedRequest } from '../types/request';
+
 export const getLogin = async (req: AuthenticatedRequest, res: Response) => {
   if (req.user) {
     return res.redirect('/');
