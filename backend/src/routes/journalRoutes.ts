@@ -3,6 +3,6 @@ import { JournalController } from '../controllers/journal';
 
 const router = express.Router();
 
-router.get('/', JournalController.getJournal);
+router.post('/', JournalController.getJournal);
 
 export default router;

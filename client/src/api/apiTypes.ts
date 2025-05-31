@@ -1,9 +1,9 @@
-import { IJournalRequest, IJournalResponse } from "../queries/types/journal"
+import { IJournalRequest, IJournalResponse } from '../queries/types/journal';
 
-export type IApiRequestMethods = 'POST' | 'GET' | 'PUT' | 'DELETE'
+export type IApiRequestMethods = 'POST' | 'GET' | 'PUT' | 'DELETE';
 
-export type IApiRequestTypes = 'base' | 'journal'
+export type IApiRequestTypes = 'base' | 'journal';
 
-export type IRequestData = IJournalRequest
+export type IRequestData = IJournalRequest;
 
-export type IResponseData = IJournalResponse
+export type IResponseData = IJournalResponse;

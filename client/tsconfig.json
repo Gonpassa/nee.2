@@ -22,7 +22,12 @@
 
     /* Emotion */
     "jsxImportSource": "@emotion/react",
-    "types": ["vite/client", "@emotion/react/types/css-prop"]
+    "types": ["vite/client", "@emotion/react/types/css-prop"],
+    "baseUrl": "src",
+    "paths": {
+      "css": ["node_modules/@emotion/react"],
+      "src/*": ["*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/types.d.ts"]
 }

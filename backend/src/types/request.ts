@@ -2,5 +2,7 @@ import { IUser } from '../models/User';
 import { Request } from 'express';
 
 export interface AuthenticatedRequest extends Request {
-  user: IUser;
+  body: {
+    user: IUser;
+  };
 }

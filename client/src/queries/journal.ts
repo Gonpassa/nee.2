@@ -6,12 +6,12 @@ const journalQueryKey = (userId: string) => ['journal', userId];
 type JournalQueryKey = ReturnType<typeof journalQueryKey>;
 
 const fetchJournal = async (journalRequest: IJournalRequest): Promise<IJournalResponse | undefined> => {
-    const response = await api('GET', 'journal', { data: journalRequest });
+    const response = await api('POST', 'journal', { data: journalRequest });
     return response;
 }
 
 export const useJournalQuery = (journalRequest: IJournalRequest, options?: QueryOptions): UseQueryResult<IJournalResponse> => {
-  const queryKey: JournalQueryKey = journalQueryKey(journalRequest.userId);
+  const queryKey: JournalQueryKey = journalQueryKey(journalRequest.user.id);
   return useQuery({
     queryKey,
     queryFn: () => fetchJournal(journalRequest),

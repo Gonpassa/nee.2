@@ -11,15 +11,26 @@ export interface IEntry extends mongoose.Document {
   userId: string;
 }
 
-const EntrySchema = new mongoose.Schema({
-  title: String,
-  month: Number,
-  year: Number,
-  day: Number,
-  time: String,
-  mood: String,
-  entry: String,
-  userId: String,
-});
+const EntrySchema = new mongoose.Schema(
+  {
+    title: String,
+    month: Number,
+    year: Number,
+    day: Number,
+    time: String,
+    mood: String,
+    entry: String,
+    userId: String,
+  },
+  { timestamps: true },
+);
 
 export const Entry = mongoose.model<IEntry>('Entry', EntrySchema);
+
+export interface IJournalEntry {
+  entryTitle: string;
+  entryDate: Date;
+  mood: string;
+  entry: string;
+  userId: string;
+}
