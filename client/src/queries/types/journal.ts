@@ -1,3 +1,5 @@
+import { IUser } from "./user";
+
 export interface IEntry {
   title: string;
   month: number;
@@ -7,6 +9,7 @@ export interface IEntry {
   mood: string;
   entry: string;
   userId: string;
+  id: string;
 }
 
 export interface IJournalResponse {
@@ -14,5 +17,5 @@ export interface IJournalResponse {
 }
 
 export interface IJournalRequest {
-  userId: string;
+  user: IUser;
 }

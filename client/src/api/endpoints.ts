@@ -1,8 +1,9 @@
-import { IApiRequestTypes } from "./apiTypes"
+import { IApiRequestTypes } from './apiTypes';
 
-export const endPoints: {[k in IApiRequestTypes]: string} = {
+export const endPoints: { [k in IApiRequestTypes]: string } = {
   base: '',
-  journal: '/journal'
-}
+  journal: '/journal',
+};
 
-export const getUrl = (type: IApiRequestTypes, params?: string) => !params ? endPoints[type] : endPoints[type] + params
+export const getUrl = (type: IApiRequestTypes, params?: string) =>
+  !params ? endPoints[type] : endPoints[type] + params;

@@ -1,18 +1,16 @@
-import { FC } from "react";
-import PreloadContainer from "./PreloadContainer/PreloadContainer";
-import { ApiProvider } from "./ApiProvider/ApiProvider";
-import Journal from "./Journal/Journal";
+import { FC } from 'react';
+import PreloadContainer from './PreloadContainer/PreloadContainer';
+import { ApiProvider } from './ApiProvider/ApiProvider';
+import Journal from './Journal/Journal';
 
- 
 export const JournalContainer: FC = () => {
   return (
     <PreloadContainer>
-      {(data) =>
+      {(data) => (
         <ApiProvider {...data}>
           <Journal />
-        </ApiProvider>}
-    </PreloadContainer> 
-  )
-  ;
-}
- 
+        </ApiProvider>
+      )}
+    </PreloadContainer>
+  );
+};

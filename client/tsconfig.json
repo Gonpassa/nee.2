@@ -26,8 +26,8 @@
     "baseUrl": "src",
     "paths": {
       "css": ["node_modules/@emotion/react"],
-      "src/*": ["*"],
-    },
+      "src/*": ["*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "src/types.d.ts"]
 }
